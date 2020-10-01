@@ -1,0 +1,76 @@
+/*
+    Created on : Sep 21, 2020, 1:24:04 PM
+    Author     : simon
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Lucida Sand-serif';
+    background-color: #efefef;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+h1{
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin: 1em;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: stretch;
+    justify-items: space-around;
+}
+
+label {
+    font-size: 1.1em;
+}
+
+input, select {
+    margin: 0px;
+    padding: 0.2em;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.list-container {
+    margin: 2em;;
+    padding: 1em;
+    width: 60%;
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+.list-container>p {
+    margin: 1em;
+    padding: 1.2em;
+}
+
+.list-container>p:nth-child(odd) {
+    background-color: #cdcdcd;
+}

@@ -14,7 +14,7 @@
     <body bgcolor="red">
         <h1><font color="white">Error</font></h1>
         <section style="background-color: #efefef; padding: 10px;">
-            <%= exception != null ? exception.getMessage() : ""%>
+            ${exception.getMessage()}
         </section>
     </body>
 </html>

@@ -1,11 +1,14 @@
+package com.benjaminsimon.junior.java.test;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import com.benjaminsimon.testconsole.Data;
-import com.benjaminsimon.testconsole.Data.Order;
+import com.benjaminsimon.testconsole.TextList;
+import com.benjaminsimon.testconsole.TextList.Order;
+import com.benjaminsimon.testconsole.XmlReader;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -43,9 +46,9 @@ public class Listview extends HttpServlet {
         order = order != null && !order.isBlank() ? order : "_";
         rev = rev != null && !rev.isBlank() ? rev : "_";
         
-        Order o = order.equals("f") ? Data.Order.FREQUENCY : Data.Order.NAME;
+        Order o = order.equals("f") ? Order.FREQUENCY : Order.NAME;
         
-        boolean r = rev.equals("rev") ? true : false;
+        boolean r = rev.equals("rev");
         
         if(xml == null || xml.isBlank()) {
             response.sendRedirect("index.jsp");
@@ -53,14 +56,15 @@ public class Listview extends HttpServlet {
         }
         
         try {
-            Data.ReadXml(xml);
-            System.out.println(search);
-            List<String> names = Data.filter(Data.texts, search);
-            names = Data.sort(names, o, r);
-            names = Data.getFormattedText(names);
-            request.setAttribute("names", names);
+            XmlReader xmlReader = new XmlReader();
+            
+            TextList textList = xmlReader.readXml(xml);
+            textList.filter(search);
+            textList.sort(o, r);
+            List<String> output = textList.getFormattedText();
+            request.setAttribute("names", output);
             request.getRequestDispatcher("listview.jsp").forward(request, response);
-        } catch (Exception e) {
+        } catch (IOException | ServletException e) {
             request.setAttribute("exception", e);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }

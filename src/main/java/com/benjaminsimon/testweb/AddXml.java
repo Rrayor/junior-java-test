@@ -55,8 +55,8 @@ public class AddXml extends HttpServlet {
             session.setAttribute("xml", xml);
             
             //Forward to listview
-            request.getRequestDispatcher("listview").forward(request, response);
-        } catch (IOException | ServletException e) {
+            response.sendRedirect("listview");
+        } catch (IOException e) {
             
             //Send exception and dispatch error.jsp
             request.setAttribute("exception", e);

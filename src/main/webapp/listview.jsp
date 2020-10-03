@@ -4,6 +4,7 @@
     Author     : simon
 --%>
 
+<%@page import="com.benjaminsimon.testweb.config.InputConfig"%>
 <%@page import="com.benjaminsimon.testconsole.FilterAndOrder"%>
 <%@page import="com.benjaminsimon.testconsole.TextList.Order"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,6 +14,10 @@
     <head>
 
         <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
+            response.setHeader("pragma", "no-cache"); //HTTP 1.0
+            response.setHeader("Expires", "0"); //Proxies
+
             FilterAndOrder filterAndOrder = (FilterAndOrder) request.getAttribute("filterAndOrder");
 
             String search = "";
@@ -20,7 +25,11 @@
             boolean reverse = false;
 
             if (filterAndOrder != null) {
-                search = filterAndOrder.getFilter() != null ? filterAndOrder.getFilter() : "";
+
+                if (filterAndOrder.getFilter() != null) {
+                    search = filterAndOrder.getFilter();
+                }
+
                 order = filterAndOrder.getOrder();
                 reverse = filterAndOrder.isReverse();
             }

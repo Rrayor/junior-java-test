@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.ParserConfigurationException;
+import org.apache.commons.lang.StringEscapeUtils;
+import org.xml.sax.SAXException;
 
 /**
  * Servlet that handles /listview requests
@@ -86,7 +89,8 @@ public class Listview extends HttpServlet {
             
             //Dispatch listview.jsp
             request.getRequestDispatcher("listview.jsp").forward(request, response);
-        } catch (IOException | ServletException e) {
+        } catch (IOException | ServletException | ParserConfigurationException | SAXException e) {
+            session.removeAttribute("xml");
             
             //Send exception and dispatch error.jsp
             request.setAttribute("exception", e);
@@ -102,36 +106,77 @@ public class Listview extends HttpServlet {
      * @param rev The String parameter to set reverse by.
      * @return A FilterAndOrder instance with its properties set.
      * @see FilterAndOrder
+     * @see validateSearch
+     * @see validateOrder
+     * @see validateReverse
      */
     private FilterAndOrder createFilterAndOrder(String search, String orderString, String rev) {
         FilterAndOrder filterAndOrder = new FilterAndOrder();
 
-        //Check search parameter and set filter option
-        if(search.isBlank())
-            search = null;
-        
-        filterAndOrder.setFilter(search);
+        //Check rev parameter and set reverse option to it
+        String filter = validateSearch(search);
+        filterAndOrder.setFilter(filter);
         
         //Check orderString parameter and set order option to it
-        if(orderString == null || orderString.isBlank())
-            orderString = InputConfig.ORDER_BY_NAME_STRING;
-        
-        Order order = Order.NAME;
-        if(orderString.equals(InputConfig.ORDER_BY_FREQUENCY_STRING))
-            order = Order.FREQUENCY;
-        
+        Order order = validateOrder(orderString);
         filterAndOrder.setOrder(order);
         
-        //Check rev parameter and set reverse option to it
-        if(rev == null || rev.isBlank())
-            rev = InputConfig.PLACEHOLDER_STRING;
-        
-
-        boolean reverse = false;
-        if(rev.equals(InputConfig.REVERSE_ORDER_STRING))
-            reverse = true;
+        //Check search parameter and set filter option
+        boolean reverse = validateReverse(rev);
         filterAndOrder.setReverse(reverse);
         
         return filterAndOrder;
+    }
+    
+    
+    /**
+     * Validates search value.
+     * @param search The String to validate
+     * @return The final String value of search
+     */
+    private String validateSearch(String search) {
+        if(search == null || search.isBlank()){
+            search = null;
+        }
+        else{
+            search = search.trim();
+            search = StringEscapeUtils.escapeHtml(search);
+        }
+        
+        return search;
+    }
+    
+    /**
+     * Validates order String value.
+     * @param orderString The String to validate
+     * @return The final Order order value.
+     */
+    private Order validateOrder(String orderString) {
+        Order order = Order.NAME;
+        
+        if(orderString == null || orderString.isBlank())
+            orderString = InputConfig.ORDER_BY_NAME_STRING;
+        
+        if(orderString.equals(InputConfig.ORDER_BY_FREQUENCY_STRING))
+            order = Order.FREQUENCY;
+        
+        return order;
+    }
+
+    /**
+     * Validates rev String value
+     * @param rev The String to validate
+     * @return the final boolean reverse value
+     */
+    private boolean validateReverse(String rev) {
+        boolean reverse = false;
+        
+        if(rev == null || rev.isBlank())
+            rev = InputConfig.PLACEHOLDER_STRING;
+        
+        if(rev.equals(InputConfig.REVERSE_ORDER_STRING))
+            reverse = true;
+        
+        return reverse;
     }
 }

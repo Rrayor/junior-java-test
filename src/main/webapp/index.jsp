@@ -4,10 +4,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
+            response.setHeader("pragma", "no-cache"); //HTTP 1.0
+            response.setHeader("Expires", "0"); //Proxies
+
+            if (session.getAttribute("xml") != null) {
+                response.sendRedirect("listview");
+            }
+        %>
+        <title>Choose an xml file</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <<link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
         <section class="container">
@@ -16,7 +25,7 @@
 
             <form action="add-xml" method="post">
                 <div class="form-group">
-                    <label for="xml">Choose an xml file</label>
+                    <label for="xml">Choose an XML file</label>
                     <input type="text" name="xml" />
                     <small class="error">${messages.xml}</small>
                 </div>

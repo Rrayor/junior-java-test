@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.github.Rrayor</groupId>
             <artifactId>junior-java-test-console</artifactId>
-            <version>-89e55c593f-1</version>
+            <version>fa7f33d38d</version>
         </dependency>
         <dependency>
             <groupId>jstl</groupId>

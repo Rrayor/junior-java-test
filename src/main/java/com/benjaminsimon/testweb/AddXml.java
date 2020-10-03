@@ -1,4 +1,4 @@
-package com.benjaminsimon.junior.java.test;
+package com.benjaminsimon.testweb;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,19 +17,33 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Responsible for checking XML file path and setting session variable to it.
  * @author simon
  */
 @WebServlet(urlPatterns = {"/add-xml"})
 public class AddXml extends HttpServlet {
     
+    /**
+     * Handles Post request.Handles "xml" parameter.If it is ok, sets the session attrubute "xml" to it.Dispatches listview
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
+     * 
+     * @see Listview
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         HttpSession session = request.getSession();
+        
+        //Variable to store error messages
         Map<String, String> messages = new HashMap<>();
+        
+        //Get parameter
         final String xml = request.getParameter("xml");
         
+        //If xml is empty, send an error message
         if(xml == null || xml.isBlank()) {
             messages.put("xml", "Invalid file path");
             request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -37,9 +51,14 @@ public class AddXml extends HttpServlet {
         }
         
         try {
+            //Set xml session attribute
             session.setAttribute("xml", xml);
+            
+            //Forward to listview
             request.getRequestDispatcher("listview").forward(request, response);
         } catch (IOException | ServletException e) {
+            
+            //Send exception and dispatch error.jsp
             request.setAttribute("exception", e);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }

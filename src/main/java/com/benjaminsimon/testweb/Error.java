@@ -1,3 +1,5 @@
+package com.benjaminsimon.testweb;
+
 import com.benjaminsimon.testweb.logging.WebLogger;
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -16,6 +18,9 @@ public class Error extends HttpServlet {
     
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     
+    /**
+     * Sets up the logger if it is not set up
+     */
     private void setupLogger() {
         if(WebLogger.isSetUp)
             return;
@@ -27,6 +32,15 @@ public class Error extends HttpServlet {
         }
     }
     
+    
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

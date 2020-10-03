@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/simon/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar;C:/Users/simon/.m2/repository/javax/javaee-web-api/7.0/javaee-web-api-7.0.jar;C:/Users/simon/.m2/repository/com/github/Rrayor/junior-java-test-console/6a4d034f61/junior-java-test-console-6a4d034f61.jar;C:/Users/simon/.m2/repository/jstl/jstl/1.2/jstl-1.2.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'E:/Projects/Java/junior-java-test/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2020. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'E:/Projects/Java/junior-java-test/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'junior-java-test 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/7/docs/api' 'E:/Projects/Java/junior-java-test/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'junior-java-test 1.0-SNAPSHOT API'

@@ -38,6 +38,8 @@ public class WebLogger {
      * Sets up the logger to log to logs.log file and console if parameter is true.
      * @param useConsole boolean that specifies if the logger should log to the console.
      * @throws java.io.IOException
+     * @throws InvalidPathException
+     * @throws IllegalArgumentException
      */
     public static void setup(boolean useConsole) throws IOException, InvalidPathException, IllegalArgumentException {
 
@@ -60,6 +62,7 @@ public class WebLogger {
 
     /**
      * Prevents logging to the console.
+     * @throws SecurityException
      */
     private static void suppressConsoleLogging() throws SecurityException {
         // suppress the logging output to the console

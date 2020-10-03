@@ -24,9 +24,9 @@ import javax.servlet.http.HttpSession;
 public class AddXml extends HttpServlet {
     
     /**
-     * Handles Post request.Handles "xml" parameter.If it is ok, sets the session attrubute "xml" to it.Dispatches listview
-     * @param request
-     * @param response
+     * Handles Post request.Handles "xml" parameter.If it is ok, sets the session attribute "xml" to it.Dispatches listview
+     * @param request request object
+     * @param response response object
      * @throws javax.servlet.ServletException
      * @throws java.io.IOException
      * 

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.benjaminsimon.testweb","l":"AddXml"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.benjaminsimon.testweb","l":"Error"},{"p":"com.benjaminsimon.testweb.config","l":"InputConfig"},{"p":"com.benjaminsimon.testweb","l":"Listview"},{"p":"com.benjaminsimon.testweb.logging","l":"WebLogger"}]

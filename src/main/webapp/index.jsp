@@ -23,10 +23,10 @@
 
             <h1>Select a File</h1>
 
-            <form action="add-xml" method="post">
-                <div class="form-group">
+            <form action="add-xml" method="post" id="file-form">
+                <div class="form-group" id="xml-group">
                     <label for="xml">Choose an XML file</label>
-                    <input type="text" name="xml" />
+                    <input type="text" name="xml" id="xml-input" required/>
                     <small class="error">${messages.xml}</small>
                 </div>
                 <div class="form-group">

@@ -51,3 +51,12 @@ It is basically the same as the TestLogger class in my "junior-java-test-console
 InputConfig class holds the constant values for filter and order parameters.
 
 Creating real config files was out of the scope of the project. I may do it later. However This solution is still better than "magic strings".
+
+## Error Servlet
+Catches the exceptions passed through it and logs them before dispatching error.jsp
+
+## error.jsp
+A generic error page to display exception messages.
+
+Not exactly production ready, but it is at least something.
+... Security concerns and user annoyance aside :D
